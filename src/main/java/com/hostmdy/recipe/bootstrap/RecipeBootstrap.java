@@ -78,8 +78,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		
 		
 		//Note-> Recipe connect
-		Notes notes = new Notes();
-		notes.setRecipeNote("343\r\n"
+		Notes note1 = new Notes();
+		note1.setRecipeNote("343\r\n"
 				+ "Calories\r\n"
 				+ "20g\r\n"
 				+ "Fat\r\n"
@@ -87,23 +87,40 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 				+ "Carbs\r\n"
 				+ "24g\r\n"
 				+ "Protein");
+		 
+		Notes note2 = new Notes();
+		note2.setRecipeNote("I used four 6-ounce cube steaks for this recipe.\r\n"
+				+ "\r\n"
+				+ "Worcestershire sauce is quite salty. Be sure to allow for that, when adding salt or seasoned salt.");
 		
-		Recipe recipe = new Recipe();
+		Recipe recipe1 = new Recipe();
 		
 		//one to one (two ways)
-		recipe.setTitle("True CheeseBurger Pizza");
-		recipe.setSource("https://www.allrecipes.com/recipes/");
-		recipe.setNotes(notes);
-		notes.setRecipe(recipe);
-		recipe.setPrepTime(15);
-		recipe.setCookTime(30);
-		recipe.setDescription("These baked meatballs are tender and tasty. I also freeze these meatballs and take out how many servings I need for each meal.");
-		recipe.setDirection("1.Preheat the oven to 350 degrees F (175 degrees C).\r\n"
+		recipe1.setTitle("True CheeseBurger Pizza");
+		recipe1.setSource("https://www.allrecipes.com/recipes/");
+		recipe1.setNotes(note1);
+		note1.setRecipe(recipe1);
+		recipe1.setPrepTime(15);
+		recipe1.setCookTime(30);
+		recipe1.setDescription("These baked meatballs are tender and tasty. I also freeze these meatballs and take out how many servings I need for each meal.");
+		recipe1.setDirection("1.Preheat the oven to 350 degrees F (175 degrees C).\r\n"
 				+ "\r\n"
 				+ "2.Mix bread crumbs, Romano cheese, parsley, salt, pepper, garlic powder, and onion powder together in a large bowl; stir in water and eggs. Add ground beef and mix until well combined. Form mixture into balls and place on a nonstick baking sheet.\r\n"
 				+ "\r\n"
 				+ "3.Bake in the preheated oven cooked through and evenly browned, about 30 minutes.");
-		recipe.setDifficulty(Difficulty.EASY);
+		recipe1.setDifficulty(Difficulty.EASY);
+		
+		
+		Recipe recipe2 = new Recipe();
+		
+		recipe2.setTitle("Pan-Fried Cube Steaks with Simple Pan Sauce");
+		recipe2.setSource("https://www.allrecipes.com");
+		recipe2.setNotes(note2);
+		note2.setRecipe(recipe2);
+		recipe2.setPrepTime(5);
+		recipe2.setCookTime(10);
+		recipe2.setDescription("Cube steak is a cut of meat from either the top round or the bottom round, that is run through the store's mechanical tenderizer. It is usually sold in individual portions, from 4-ounce up to 8-ounces each. Sometimes the cut is called minute steak, perhaps because it takes only minutes to prepare. I used to watch my Mom prepare these for dinner, and it's kind of a challenge to write down what I've always done without a recipe, but here it goes! You may use garlic salt, or your favorite seasoning salt, to replace the regular salt and pepper.");
+		recipe2.setDirection("");
 		
 		//Get Category Object
 		Category american = americanOpt.get();
@@ -117,10 +134,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		categories.add(italian);
 		
 		//category - recipe manytomany two ways
-		recipe.setCategories(categories);
-		american.getRecipe().add(recipe);
-		fastFood.getRecipe().add(recipe);
-		italian.getRecipe().add(recipe);
+		recipe1.setCategories(categories);
+		american.getRecipe().add(recipe1);
+		fastFood.getRecipe().add(recipe1);
+		italian.getRecipe().add(recipe1);
 		
 		//Get UOM Objects
 		UnitOfMeasurement ounce = ounceOpt.get();
@@ -132,18 +149,18 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		
 		//Create Ingeridients Objects
 		
-		Ingredient beef = new Ingredient("pound ground beef chuck", new BigDecimal(3/4), recipe, pound);
-	    Ingredient salt = new Ingredient("salt", new BigDecimal(1/4), recipe, teaspoon);
-	    Ingredient blackPepper = new Ingredient("ground black pepper", new BigDecimal(1/4), recipe, teaspoon);
-	    Ingredient ketchup = new Ingredient("ketchup", new BigDecimal(2/3), recipe, cup);
-	    Ingredient yellowMustard = new Ingredient("prepared yellow mustard", new BigDecimal(2), recipe, tablespoon);
-	    Ingredient pizzaCrust = new Ingredient("(14 ounce) pre-baked pizza crust", new BigDecimal(14), recipe, ounce);
-	    Ingredient mozzarellaCheese = new Ingredient("shredded mozzarella cheese", new BigDecimal(3/2), recipe, cup);
-	    Ingredient cheddarCheese = new Ingredient("shredded sharp Cheddar cheese", new BigDecimal(1), recipe, cup);
-	    Ingredient onions = new Ingredient("chopped onions", new BigDecimal(1/2), recipe, cup);
-	    Ingredient pickleSlices = new Ingredient("dill pickle slices", new BigDecimal(1/2), recipe, cup);
-	    Ingredient shreddedLettuce = new Ingredient("shredded lettuce (Optional)", new BigDecimal(1), recipe, cup);
-	    Ingredient dicedTomatoes  = new Ingredient("diced tomatoes (Optional)", new BigDecimal(1), recipe, cup);
+		Ingredient beef = new Ingredient("pound ground beef chuck", new BigDecimal(3/4), recipe1, pound);
+	    Ingredient salt = new Ingredient("salt", new BigDecimal(1/4), recipe1, teaspoon);
+	    Ingredient blackPepper = new Ingredient("ground black pepper", new BigDecimal(1/4), recipe1, teaspoon);
+	    Ingredient ketchup = new Ingredient("ketchup", new BigDecimal(2/3), recipe1, cup);
+	    Ingredient yellowMustard = new Ingredient("prepared yellow mustard", new BigDecimal(2), recipe1, tablespoon);
+	    Ingredient pizzaCrust = new Ingredient("(14 ounce) pre-baked pizza crust", new BigDecimal(14), recipe1, ounce);
+	    Ingredient mozzarellaCheese = new Ingredient("shredded mozzarella cheese", new BigDecimal(3/2), recipe1, cup);
+	    Ingredient cheddarCheese = new Ingredient("shredded sharp Cheddar cheese", new BigDecimal(1), recipe1, cup);
+	    Ingredient onions = new Ingredient("chopped onions", new BigDecimal(1/2), recipe1, cup);
+	    Ingredient pickleSlices = new Ingredient("dill pickle slices", new BigDecimal(1/2), recipe1, cup);
+	    Ingredient shreddedLettuce = new Ingredient("shredded lettuce (Optional)", new BigDecimal(1), recipe1, cup);
+	    Ingredient dicedTomatoes  = new Ingredient("diced tomatoes (Optional)", new BigDecimal(1), recipe1, cup);
 		
 	    Set<Ingredient> ingredients = new HashSet<>();
 	    ingredients.add(beef);
@@ -159,9 +176,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 	    ingredients.add(shreddedLettuce);
 	    ingredients.add(dicedTomatoes);
 	    
-	    recipe.setIngredients(ingredients);
+	    recipe1.setIngredients(ingredients);
 	    
-	    recipes.add(recipe);
+	    recipes.add(recipe1);
 	    
 		return recipes;
 	}

@@ -70,6 +70,7 @@ public class Recipe {
 	}
 
 	public void setTitle(String title) {
+		if(!title.isBlank())
 		this.title = title;
 	}
 

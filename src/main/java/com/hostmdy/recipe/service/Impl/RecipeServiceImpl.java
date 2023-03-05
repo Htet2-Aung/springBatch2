@@ -21,11 +21,10 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 
-
 	@Override
 	public List<Recipe> getRecipes() {
 		// TODO Auto-generated method stub
-		
+	
 		return (List<Recipe>) recipeRepository.findAll();
 	}
 	

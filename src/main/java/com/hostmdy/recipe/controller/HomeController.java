@@ -25,7 +25,7 @@ public class HomeController {
 		System.out.println(recipes);
 		
 		model.addAttribute("recipes",recipes);
-		System.out.println(model.addAttribute("recipes",recipes));
+//		System.out.println(model.addAttribute("recipes",recipes));
 		return "index";
 	}
 
