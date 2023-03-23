@@ -12,21 +12,20 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Category {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String title;
 	
-	@ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
-	private Set<Recipe> recipe = new HashSet<>();
-	
-	
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "categories")
+	private  Set<Recipe> recipes = new HashSet<>();
+
 	public Category() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -43,15 +42,13 @@ public class Category {
 		this.title = title;
 	}
 
-	public Set<Recipe> getRecipe() {
-		return recipe;
+	public Set<Recipe> getRecipes() {
+		return recipes;
 	}
 
-	public void setRecipe(Set<Recipe> recipe) {
-		this.recipe = recipe;
+	public void setRecipes(Set<Recipe> recipes) {
+		this.recipes = recipes;
 	}
-
-	
 	
 	
 }

@@ -11,22 +11,20 @@ import com.hostmdy.recipe.service.RecipeService;
 
 @Controller
 public class HomeController {
-	
-	private final RecipeService recipeService;
 
+	private final RecipeService recipeService;
+	
 	public HomeController(RecipeService recipeService) {
 		super();
 		this.recipeService = recipeService;
 	}
-	
-	@GetMapping({"","/","/index"})
+
+	@GetMapping({"","/index","/"})
 	public String index(Model model) {
 		List<Recipe> recipes = recipeService.getRecipes();
-		System.out.println(recipes);
-		
 		model.addAttribute("recipes",recipes);
-//		System.out.println(model.addAttribute("recipes",recipes));
+		
 		return "index";
 	}
-
+	
 }

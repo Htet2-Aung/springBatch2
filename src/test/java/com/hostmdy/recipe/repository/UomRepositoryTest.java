@@ -8,24 +8,25 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import com.hostmdy.recipe.domain.UnitOfMeasurement;
+import com.hostmdy.recipe.domain.UnitsOfMeasurement;
 
 @DataJpaTest
 class UomRepositoryTest {
 
 	@Autowired
 	UomRepository uomRepository;
-
+	
 	@Test
-	void findByOunceUom() {
+	void findByOunce() {
 		String testUom = "ounce";
 		
-		Optional<UnitOfMeasurement> uomOptional = uomRepository.findByUom(testUom);
+		Optional<UnitsOfMeasurement> uomOpt =uomRepository.findByUom(testUom);
 		
-		if(uomOptional.isPresent())
-			assertEquals(testUom, uomOptional.get().getUom());
+		if(uomOpt.isPresent())
+			assertEquals(testUom, uomOpt.get().getUom());
+		
 		else
-			fail("Uom with name="+testUom+" is not found");
+			fail("Uom with name = "+testUom+"is not found");
 	}
 
 }

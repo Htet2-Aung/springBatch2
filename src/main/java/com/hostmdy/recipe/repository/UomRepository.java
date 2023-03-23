@@ -1,13 +1,13 @@
 package com.hostmdy.recipe.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.hostmdy.recipe.domain.UnitOfMeasurement;
+import com.hostmdy.recipe.domain.UnitsOfMeasurement;
 
-public interface UomRepository extends CrudRepository<UnitOfMeasurement, Long>{
+public interface UomRepository extends CrudRepository<UnitsOfMeasurement, Long>{
 
-	Optional<UnitOfMeasurement> findByUom(String uom);//query method
+	Optional<UnitsOfMeasurement>  findByUom(String uom);//query Method
+	
 }

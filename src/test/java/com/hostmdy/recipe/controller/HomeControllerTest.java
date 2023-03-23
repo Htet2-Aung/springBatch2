@@ -24,11 +24,12 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
+import com.hostmdy.recipe.controller.HomeController;
 import com.hostmdy.recipe.domain.Recipe;
 import com.hostmdy.recipe.service.RecipeService;
 
 class HomeControllerTest {
-	
+
 	HomeController homeController;
 	
 	@Mock
@@ -37,31 +38,32 @@ class HomeControllerTest {
 	@Mock
 	Model model;
 	
-	
 	@BeforeEach
 	void setUp() throws Exception {
 		MockitoAnnotations.openMocks(this);
-		homeController = new HomeController(recipeService);
-		
+		homeController = new HomeController(recipeService);	
 		
 	}
-	
+
 	@Test
 	void indexMockMVC() throws Exception {
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(homeController).build();
 		
 		mockMvc.perform(get("/"))
-		.andExpect(status().isOk())// 200 ok
-		.andExpect(view().name("index"));//template name-> index.html
+		.andExpect(status().isOk())//200 ok
+		.andExpect(view().name("index"));//template name -> index.html
 	}
-
+	
 	@Test
 	void indexMock() {
-		List<Recipe> fakeRecipes = new ArrayList<>();
+		List<Recipe> fakeRecipes =new ArrayList<>();
+		
 		Recipe recipe1 = new Recipe();
 		recipe1.setId(1L);
+		
 		Recipe recipe2 = new Recipe();
 		recipe2.setId(2L);
+		
 		fakeRecipes.add(recipe1);
 		fakeRecipes.add(recipe2);
 		
@@ -69,18 +71,20 @@ class HomeControllerTest {
 		
 		List<Recipe> recipes = recipeService.getRecipes();
 		
-		String indexpage = homeController.index(model);
+		String indexPage = homeController.index(model);
 		
 		assertEquals(2, recipes.size());
-		assertEquals("index", indexpage);
+		assertEquals("index", indexPage);
 		verify(recipeService,times(2)).getRecipes();
 		
 		ArgumentCaptor<List> argCaptor = ArgumentCaptor.forClass(List.class);
-//		verify(model,times(1)).addAttribute(eq("recipes"), anyIterable());
-		verify(model,times(1)).addAttribute(eq("recipes"), argCaptor.capture());
+		//verify(model, times(1)).addAttribute(eq("recipes"),anyIterable());
+		verify(model, times(1)).addAttribute(eq("recipes"),argCaptor.capture());
 		
 		List<Recipe> captorRecipes = argCaptor.getValue();
+		
 		assertEquals(2, captorRecipes.size());
+		
 	}
 
 }

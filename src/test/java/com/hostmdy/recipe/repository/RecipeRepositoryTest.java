@@ -19,8 +19,8 @@ class RecipeRepositoryTest {
 	@Test
 	void findAllTest() {
 		List<Recipe> recipes = (List<Recipe>) recipeRepository.findAll();
-		
 		assertEquals(0, recipes.size());
+		
 	}
 
 }
